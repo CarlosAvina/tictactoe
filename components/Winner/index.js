@@ -1,3 +1,5 @@
+import Button from "../Button";
+
 const winnerMessage = {
   1: "The winner is the player one",
   2: "The winner is the player two",
@@ -8,7 +10,7 @@ const Winner = ({ winnerId, reset }) => {
   return (
     <div>
       <h1>{winnerMessage[winnerId]}</h1>
-      <button onClick={reset}>Reset</button>
+      <Button onClick={reset}>Reset</Button>
     </div>
   );
 };
