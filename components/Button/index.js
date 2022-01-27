@@ -28,7 +28,6 @@ const Button = styled.button`
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  width: 100%;
 
   &:after {
     background-clip: padding-box;
