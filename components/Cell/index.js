@@ -22,6 +22,20 @@ const Cell = styled.button`
     border-bottom: var(--grid-border);
   }
 
+  /* border radius */
+  &:nth-child(1) {
+    border-top-left-radius: 10px;
+  }
+  &:nth-child(3) {
+    border-top-right-radius: 10px;
+  }
+  &:nth-child(7) {
+    border-bottom-left-radius: 10px;
+  }
+  &:nth-child(9) {
+    border-bottom-right-radius: 10px;
+  }
+
   border-left: var(--grid-border);
   border-top: var(--grid-border);
   border-bottom: none;
