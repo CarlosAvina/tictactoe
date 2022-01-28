@@ -1,13 +1,36 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+
+import styled from "styled-components";
 import faker from "@faker-js/faker";
 
 import Game from "../components/Game";
 import Button from "../components/Button";
+import Player from "../components/Player";
+import { X, Circle } from "../icons";
 
 import setInitialGameState from "../utils/setInitialGameState";
 import getGameState from "../utils/getGameState";
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+
+  .title {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  aside {
+    grid-column: -2 / -1;
+    margin-right: 50px;
+  }
+
+  .game-board {
+    grid-column: 3 / -3;
+  }
+`;
 
 export default function Playground({ shareLink, gameId }) {
   const [username, setUsername] = React.useState("");
@@ -33,19 +56,15 @@ export default function Playground({ shareLink, gameId }) {
       <Head>
         <title>Tic-tac-toe</title>
       </Head>
-      <div>
-        <h1>Tic-tac-toe</h1>
-        <nav>
-          <Link href="/">
-            <Button onClick={share}>Back</Button>
-          </Link>
-          <Button onClick={share}>Share</Button>
-        </nav>
+      <Grid>
+        <h1 className="title">Tic-tac-toe</h1>
         <aside>
-          <b>{username}</b>
+          <Button onClick={share}>Share</Button>
+          <h2>Players</h2>
+          <Player Character={X} username={username} />
         </aside>
-      </div>
-      <Game />
+        <Game className="game-board" />
+      </Grid>
     </div>
   );
 }

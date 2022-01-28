@@ -20,7 +20,7 @@ const possibleWins = [
   [3, 5, 7],
 ];
 
-const Game = () => {
+const Game = ({ className }) => {
   const [turn, setTurn] = React.useState(1);
   const [moves, setMoves] = React.useState(initialStatus);
   const [winner, setWinner] = React.useState();
@@ -64,7 +64,7 @@ const Game = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <Board>
         {moves.map((move, index) => {
           const Player = move === 1 ? X : move === 2 ? Circle : null;
