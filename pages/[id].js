@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Link from "next/link";
 
 import styled from "styled-components";
 import faker from "@faker-js/faker";
@@ -32,7 +31,7 @@ const Grid = styled.div`
   }
 `;
 
-export default function Playground({ shareLink, gameId }) {
+export default function Playground({ shareLink, gameId, gameMode }) {
   const [username, setUsername] = React.useState("");
 
   function share() {
@@ -57,12 +56,13 @@ export default function Playground({ shareLink, gameId }) {
         <title>Tic-tac-toe</title>
       </Head>
       <Grid>
-        <h1 className="title">Tic-tac-toe</h1>
-        <aside>
-          <Button onClick={share}>Share</Button>
-          <h2>Players</h2>
-          <Player Character={X} username={username} />
-        </aside>
+        {gameMode === "online" ? (
+          <aside>
+            <Button onClick={share}>Share</Button>
+            <h2>Players</h2>
+            <Player Character={X} username={username} />
+          </aside>
+        ) : null}
         <Game className="game-board" />
       </Grid>
     </div>
@@ -74,10 +74,11 @@ export async function getServerSideProps(context) {
 
   const host = req.headers.host;
   const gameId = query.id;
+  const gameMode = query.mode;
 
-  const shareLink = `${host}/${gameId}`;
+  const shareLink = `${host}/${gameId}?mode=${gameMode}`;
 
   return {
-    props: { shareLink, gameId },
+    props: { shareLink, gameId, gameMode },
   };
 }
